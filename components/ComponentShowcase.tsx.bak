@@ -1,0 +1,385 @@
+import React, { useState } from 'react';
+import {
+  Button,
+  Card,
+  Icon,
+  Badge,
+  FormField,
+  ServiceCard,
+  PricingCard,
+  TestimonialCard,
+  Modal,
+  Tooltip,
+  Alert,
+  ProgressBar,
+  SectionHeader,
+} from './index';
+
+const ComponentShowcase: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showAlert, setShowAlert] = useState(true);
+
+  const handleServiceClick = () => {
+    console.log('Service clicked');
+  };
+
+  const handlePricingClick = () => {
+    console.log('Pricing clicked');
+  };
+
+  return (
+    <div className="space-y-16 p-8 bg-bg">
+      <div className="container mx-auto">
+        <SectionHeader
+          title="Component Library"
+          subtitle="A comprehensive showcase of all available components"
+          alignment="center"
+        />
+      </div>
+
+      {/* Buttons */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Buttons</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-ink-2">Variants</h3>
+            <div className="space-y-3">
+              <Button variant="primary">Primary</Button>
+              <Button variant="secondary">Secondary</Button>
+              <Button variant="accent">Accent</Button>
+              <Button variant="outline">Outline</Button>
+              <Button variant="ghost">Ghost</Button>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-ink-2">Sizes</h3>
+            <div className="space-y-3">
+              <Button size="sm">Small</Button>
+              <Button size="md">Medium</Button>
+              <Button size="lg">Large</Button>
+              <Button size="xl">Extra Large</Button>
+            </div>
+          </div>
+          
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-ink-2">States</h3>
+            <div className="space-y-3">
+              <Button disabled>Disabled</Button>
+              <Button variant="primary" icon={<Icon name="check" size="sm" />}>
+                With Icon
+              </Button>
+              <Button variant="outline" fullWidth>Full Width</Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Cards */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Cards</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card variant="default" padding="lg">
+            <h3 className="text-lg font-semibold text-ink mb-2">Default Card</h3>
+            <p className="text-ink-2">A simple card with default styling.</p>
+          </Card>
+          
+          <Card variant="elevated" padding="lg" interactive hoverEffect="lift">
+            <h3 className="text-lg font-semibold text-ink mb-2">Elevated Card</h3>
+            <p className="text-ink-2">Interactive card with hover effects.</p>
+          </Card>
+          
+          <Card variant="featured" padding="lg">
+            <h3 className="text-lg font-semibold text-ink mb-2">Featured Card</h3>
+            <p className="text-ink-2">Highlighted card with primary border.</p>
+          </Card>
+        </div>
+      </section>
+
+      {/* Icons */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Icons</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {['check', 'x', 'arrow-right', 'arrow-left', 'chevron-down', 'chevron-up', 'mail', 'phone', 'location', 'star', 'user', 'search'].map((icon) => (
+            <div key={icon} className="text-center p-4 bg-panel rounded-lg border border-panel-alt">
+              <Icon name={icon} size="lg" className="mx-auto mb-2 text-primary" />
+              <span className="text-sm text-ink-2">{icon}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Badges */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Badges</h2>
+        <div className="flex flex-wrap gap-4">
+          <Badge variant="default">Default</Badge>
+          <Badge variant="primary">Primary</Badge>
+          <Badge variant="success">Success</Badge>
+          <Badge variant="warning">Warning</Badge>
+          <Badge variant="error">Error</Badge>
+          <Badge variant="outline">Outline</Badge>
+        </div>
+      </section>
+
+      {/* Service Cards */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Service Cards</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <ServiceCard
+            title="Web Design"
+            description="Beautiful, responsive websites that convert visitors into customers."
+            icon="star"
+            features={['Responsive Design', 'SEO Optimized', 'Fast Loading']}
+            ctaText="Learn More"
+            ctaAction={handleServiceClick}
+          />
+          
+          <ServiceCard
+            title="Branding"
+            description="Create a memorable brand identity that stands out from the competition."
+            icon="user"
+            features={['Logo Design', 'Color Palette', 'Brand Guidelines']}
+            ctaText="Get Started"
+            ctaAction={handleServiceClick}
+            variant="featured"
+          />
+          
+          <ServiceCard
+            title="Digital Marketing"
+            description="Strategic marketing solutions to grow your online presence."
+            icon="mail"
+            features={['SEO', 'Social Media', 'Content Strategy']}
+            ctaText="Explore"
+            ctaAction={handleServiceClick}
+          />
+        </div>
+      </section>
+
+      {/* Pricing Cards */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Pricing Cards</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <PricingCard
+            title="Starter"
+            price="$49"
+            period="/month"
+            description="Perfect for small businesses"
+            features={['3 Pages', 'Basic SEO', 'Contact Form', 'Email Support']}
+            ctaText="Choose Plan"
+            ctaAction={handlePricingClick}
+          />
+          
+          <PricingCard
+            title="Professional"
+            price="$99"
+            period="/month"
+            description="Ideal for growing businesses"
+            features={['5 Pages', 'Advanced SEO', 'Blog Setup', 'Priority Support']}
+            ctaText="Choose Plan"
+            ctaAction={handlePricingClick}
+            featured={true}
+            popular={true}
+          />
+          
+          <PricingCard
+            title="Enterprise"
+            price="$199"
+            period="/month"
+            description="For large organizations"
+            features={['Unlimited Pages', 'Custom Features', 'Dedicated Support', 'Analytics']}
+            ctaText="Choose Plan"
+            ctaAction={handlePricingClick}
+          />
+        </div>
+      </section>
+
+      {/* Testimonial Cards */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Testimonial Cards</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <TestimonialCard
+            quote="Vic Rod transformed our online presence completely! The new website looks amazing and performs even better."
+            author="Sarah Johnson"
+            company="TechStart Inc"
+            rating={5}
+          />
+          
+          <TestimonialCard
+            quote="Professional service from start to finish. Our new brand identity perfectly captures our company's vision."
+            author="Michael Chen"
+            company="Innovate Labs"
+            rating={5}
+          />
+          
+          <TestimonialCard
+            quote="The team at Vic Rod delivered beyond our expectations. Highly recommend for any web design project."
+            author="Emily Rodriguez"
+            company="Green Solutions"
+            rating={5}
+          />
+        </div>
+      </section>
+
+      {/* Interactive Components */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Interactive Components</h2>
+        
+        {/* Modal */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-ink-2 mb-4">Modal</h3>
+          <Button onClick={() => setIsModalOpen(true)}>Open Modal</Button>
+          
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            title="Example Modal"
+            size="md"
+          >
+            <div className="space-y-4">
+              <p className="text-ink-2">This is an example modal with some content.</p>
+              <div className="flex gap-3">
+                <Button variant="primary" onClick={() => setIsModalOpen(false)}>
+                  Confirm
+                </Button>
+                <Button variant="outline" onClick={() => setIsModalOpen(false)}>
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          </Modal>
+        </div>
+
+        {/* Tooltips */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-ink-2 mb-4">Tooltips</h3>
+          <div className="flex gap-4">
+            <Tooltip content="This tooltip appears on top" position="top">
+              <Button variant="outline">Top Tooltip</Button>
+            </Tooltip>
+            
+            <Tooltip content="This tooltip appears on the right" position="right">
+              <Button variant="outline">Right Tooltip</Button>
+            </Tooltip>
+            
+            <Tooltip content="This tooltip appears on the bottom" position="bottom">
+              <Button variant="outline">Bottom Tooltip</Button>
+            </Tooltip>
+            
+            <Tooltip content="This tooltip appears on the left" position="left">
+              <Button variant="outline">Left Tooltip</Button>
+            </Tooltip>
+          </div>
+        </div>
+
+        {/* Alerts */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-ink-2 mb-4">Alerts</h3>
+          <div className="space-y-4">
+            {showAlert && (
+              <Alert
+                type="success"
+                title="Success!"
+                onClose={() => setShowAlert(false)}
+              >
+                Your changes have been saved successfully.
+              </Alert>
+            )}
+            
+            <Alert type="info" title="Information">
+              This is an informational alert with some helpful content.
+            </Alert>
+            
+            <Alert type="warning" title="Warning">
+              Please review your input before proceeding.
+            </Alert>
+            
+            <Alert type="error" title="Error">
+              Something went wrong. Please try again.
+            </Alert>
+          </div>
+        </div>
+
+        {/* Progress Bars */}
+        <div className="mb-8">
+          <h3 className="text-lg font-semibold text-ink-2 mb-4">Progress Bars</h3>
+          <div className="space-y-6">
+            <ProgressBar
+              value={75}
+              variant="primary"
+              size="lg"
+              showLabel={true}
+              labelPosition="top"
+            />
+            
+            <ProgressBar
+              value={45}
+              variant="success"
+              size="md"
+              showLabel={true}
+              labelPosition="left"
+            />
+            
+            <ProgressBar
+              value={90}
+              variant="warning"
+              size="sm"
+              showLabel={true}
+              labelPosition="bottom"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Form Components */}
+      <section className="container mx-auto">
+        <h2 className="text-2xl font-bold text-ink mb-8">Form Components</h2>
+        <div className="max-w-2xl">
+          <Card variant="elevated" padding="lg">
+            <form className="space-y-6">
+              <FormField
+                label="Full Name"
+                required={true}
+                error="Please enter your full name"
+              >
+                <input
+                  type="text"
+                  className="w-full px-4 py-2 border border-panel-alt rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Enter your full name"
+                />
+              </FormField>
+              
+              <FormField
+                label="Email Address"
+                required={true}
+              >
+                <input
+                  type="email"
+                  className="w-full px-4 py-2 border border-panel-alt rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Enter your email"
+                />
+              </FormField>
+              
+              <FormField
+                label="Message"
+                required={true}
+              >
+                <textarea
+                  rows={4}
+                  className="w-full px-4 py-2 border border-panel-alt rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+                  placeholder="Tell us about your project"
+                />
+              </FormField>
+              
+              <Button variant="primary" size="lg" fullWidth type="submit">
+                Send Message
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default ComponentShowcase;

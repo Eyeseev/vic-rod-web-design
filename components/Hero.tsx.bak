@@ -1,0 +1,68 @@
+import React from 'react'
+import { Button } from './Button'
+
+export interface HeroProps {
+  title: string
+  subtitle: string
+  ctaPrimary: string
+  ctaSecondary: string
+  trustText: string
+  illustration: string
+}
+
+const Hero: React.FC<HeroProps> = ({
+  title,
+  subtitle,
+  ctaPrimary,
+  ctaSecondary,
+  trustText,
+  illustration
+}) => {
+  const handlePrimaryClick = () => {
+    // Analytics tracking or navigation logic
+    console.log('Primary CTA clicked:', ctaPrimary)
+  }
+
+  const handleSecondaryClick = () => {
+    // Analytics tracking or navigation logic
+    console.log('Secondary CTA clicked:', ctaSecondary)
+  }
+
+  return (
+    <section className="hero">
+      <div className="hero-inner">
+        <img 
+          className="hero-illo" 
+          src={illustration} 
+          alt="Minimal browser wireframe illustration" 
+          width="820" 
+          height="220" 
+          loading="eager" 
+          fetchPriority="high" 
+          decoding="async" 
+        />
+        <h1 className="text-balance">{title}</h1>
+        <p className="lead text-balance">{subtitle}</p>
+        <div className="cta-row">
+          <Button 
+            variant="primary" 
+            size="lg" 
+            onClick={handlePrimaryClick}
+          >
+            {ctaPrimary}
+          </Button>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            onClick={handleSecondaryClick}
+          >
+            {ctaSecondary}
+          </Button>
+        </div>
+        <p className="hero-trust text-balance">{trustText}</p>
+      </div>
+    </section>
+  )
+}
+
+export default Hero
